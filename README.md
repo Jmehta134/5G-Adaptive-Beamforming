@@ -5,7 +5,7 @@
 ![Stateflow](https://img.shields.io/badge/Stateflow-Control_Logic-brightgreen.svg)
 
 
-![Scope_aquisition](./images/scope_aquisition.png)
+![Scope_aquisition](./images/scope_acquisition.png)
 ![Beam Tracking](./images/beam_tracking.gif)
 ## Overview
 This repository contains a closed-loop Simulink/Stateflow model simulating the initial acquisition and tracking phases of a 5G NR (New Radio) adaptive beamforming system. 
