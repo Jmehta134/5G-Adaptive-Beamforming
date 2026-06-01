@@ -67,7 +67,8 @@ Building a hybrid physics-and-control simulation presented several highly specif
 
 ## References
 
-1. **Extremum Seeking Control (ESC) & State Machine Logic:** * Ariyur, K. B., & Krstić, M. (2003). [*Real-Time Optimization by Extremum-Seeking Control*](https://onlinelibrary.wiley.com/doi/book/10.1002/0471468209). John Wiley & Sons.
+1. **Extremum Seeking Control (ESC) & State Machine Logic:**
+   * Ariyur, K. B., & Krstić, M. (2003). [*Real-Time Optimization by Extremum-Seeking Control*](https://onlinelibrary.wiley.com/doi/book/10.1002/0471468209). John Wiley & Sons.
    * Tan, Y., Moase, W. H., Manzie, C., Nesic, D., & Mareels, I. M. (2010). ["Extremum seeking from 1922 to 2010."](https://ieeexplore.ieee.org/document/5576081) *Proceedings of the 29th Chinese Control Conference*, 14-26.
    * MathWorks. (n.d.). [*Modeling Bang-Bang Controllers and State Machines using Stateflow*](https://www.mathworks.com/products/stateflow.html). MathWorks Documentation.
 
