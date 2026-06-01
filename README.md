@@ -6,7 +6,7 @@
 ![Phased Array System Toolbox](https://img.shields.io/badge/Phased_Array_System_Toolbox-0076A8?logo=mathworks)
 ![License](https://img.shields.io/badge/license-MIT-green.svg)
 
-![3D Wavefront Radiation Pattern](./images/wavefront_3d.png)
+![3D Wavefront Radiation Pattern](./images/wavefront_3d.gif)
 *Live 3D polar radiation pattern showing the main lobe dynamically sweeping the environment.*
 
 An autonomous 5G base station simulation built in MATLAB and Simulink. This project implements a multi-state Extremum Seeking Control (ESC) algorithm to dynamically track a mobile target moving in a Lissajous trajectory using an 8x8 Uniform Planar Array (UPA) operating at 28 GHz.
@@ -31,7 +31,7 @@ The system is split into two primary domains: the physical electromagnetic simul
 
 The simulation successfully demonstrates real-time beam steering, maintaining a high-power lock on a rapidly moving target. The ESC successfully rejects noise and adapts to sudden trajectory changes.
 
-![XY Phase Space Radar](./images/xy_graph.png)
+![XY Phase Space Radar](./images/xy_graph.gif)
 *Phase-space radar visualization (Azimuth vs. Elevation) showing the ESC algorithm hunting and locking onto the true target path.*
 
 ![Telemetry Scope](./images/scope_telemetry.png)
@@ -39,17 +39,16 @@ The simulation successfully demonstrates real-time beam steering, maintaining a 
 
 ## Challenges and Solutions
 
-Building a hybrid physics-control simulation presented several highly specific engineering hurdles:
+Building a hybrid physics-and-control simulation presented several highly specific engineering hurdles spanning electromagnetic modeling, software architecture, and control theory.
 
-* **5G mmWave Filtering Trap:** * *Challenge:* The raw antenna array output a flatline of zeros because default Simulink isotropic elements filter out frequencies above 300 MHz.
-  * *Solution:* Manually bypassed the element-level frequency range limits in the Narrowband Rx Array to accept the 28 GHz carrier wave.
-* **Controller Chattering & Limit Cycles:** * *Challenge:* The ESC entered a panic state, continuously jumping between tracking and recovery, creating square artifacts on the radar plot.
-  * *Solution:* Widened the hysteresis band (50/10 Rule for thresholds), lowered the dither amplitude, and increased integrator gains to allow the system to ride through transient power dips without triggering a hard reset.
-* **Visualization Jitter (Auto-Scaling):** * *Challenge:* The 3D wavefront figure violently zoomed and shook because MATLAB continuously auto-scaled the bounding box to fit the changing beam shape.
-  * *Solution:* Wrote a custom `coder.extrinsic` script to hard-lock the axes limits, freeze the camera viewing angle, and explicitly delete rogue text objects to create a cinematic, frozen-grid animation.
-* **Crossed Signal Routing:**
-  * *Challenge:* Azimuth and Elevation signals were silently swapped due to Stateflow's alphabetical port assignment, causing the beam to track on the wrong axes.
-  * *Solution:* Stripped the default routing and built a labeled multiplexing function block to force explicit, error-proof port connections.
+| Engineering Challenge | Architectural Solution & Rationale |
+| :--- | :--- |
+| **5G mmWave Filtering Trap**<br>The default Simulink isotropic antenna elements act as low-pass filters, completely attenuating the 28 GHz carrier wave and resulting in a zero-power signal flatline. | **Bypassed Element Constraints:** Manually overrode the default element-level frequency range limits within the Narrowband Rx Array block, forcing the array physics to accept and process millimeter-wave frequencies natively. |
+| **ESC Limit Cycles & Chattering**<br>The tracking algorithm became trapped in a rapid feedback loop between `FINE_TRACKING` and `RECOVERY` states, creating physical "square" artifacts on the tracking radar. | **Hysteresis & Gain Tuning:** Implemented the "50/10 Rule" for drop/acquire thresholds to widen the hysteresis band. Attenuated the physical dither amplitude and increased the integrator gains, allowing the system to ride through transient signal nulls without triggering a hard reset. |
+| **Dither Cross-Talk & Axis Drift**<br>If the horizontal and vertical perturbation frequencies ($\omega_\theta$ and $\omega_\phi$) share common harmonics, the gradient demodulation cross-contaminates, causing the beam to drift diagonally off-target. | **Orthogonal Frequency Selection:** Selected strictly non-harmonic, prime-based frequencies (e.g., 50 Hz and 73 Hz) for the dither signals to ensure mathematically clean, completely independent gradient extraction on both axes. |
+| **3D Render Auto-Scaling Jitter**<br>MATLAB's graphics engine dynamically recalculates the bounding box and camera lens angle (`CameraViewAngle`) on every frame to fit the morphing beam, causing a violent, shaky animation. | **Custom Extrinsic Pipeline:** Built a `coder.extrinsic` visualization script that hard-locks the physical axes limits, explicitly freezes the camera viewing angle, and actively sweeps/deletes rogue text objects on every frame to ensure a cinematic, frozen-grid animation. |
+| **Implicit Port Swapping**<br>Azimuth and Elevation tracking signals were silently crossed. Stateflow implicitly assigns output port numbers alphabetically by default, causing the radar to track the target on inverted axes. | **Explicit Multiplexing:** Stripped the default implicit routing and designed a custom `MATLAB Function` block with explicitly named input pins (`Azimuth_Theta` and `Elevation_Phi`), forcing strict, error-proof physical connections on the Simulink canvas. |
+| **Multi-Domain Solver Bottlenecks**<br>Simulating 28 GHz electromagnetic phase shifts alongside a macroscopic mechanical beam-steering algorithm requires vastly different time domains, grinding the simulation to a halt. | **Baseband Equivalent & Discrete Timing:** Utilized baseband equivalent modeling for the RF signals (abstracting away the high-frequency carrier) and implemented a fixed-step discrete solver to maintain computational efficiency while accurately capturing the ESC dynamics. |
  
 ## How to Run
 
