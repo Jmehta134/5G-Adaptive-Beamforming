@@ -67,16 +67,19 @@ Building a hybrid physics-and-control simulation presented several highly specif
 
 ## References
 
-1. **Extremum Seeking Control (ESC) & State Machine Logic:** * Ariyur, K. B., & Krstić, M. (2003). *Real-Time Optimization by Extremum-Seeking Control*. John Wiley & Sons.
-   * Tan, Y., Moase, W. H., Manzie, C., Nesic, D., & Mareels, I. M. (2010). "Extremum seeking from 1922 to 2010." *Proceedings of the 29th Chinese Control Conference*, 14-26.
+1. **Extremum Seeking Control (ESC) & State Machine Logic:** * Ariyur, K. B., & Krstić, M. (2003). [*Real-Time Optimization by Extremum-Seeking Control*](https://onlinelibrary.wiley.com/doi/book/10.1002/0471468209). John Wiley & Sons.
+   * Tan, Y., Moase, W. H., Manzie, C., Nesic, D., & Mareels, I. M. (2010). ["Extremum seeking from 1922 to 2010."](https://ieeexplore.ieee.org/document/5576081) *Proceedings of the 29th Chinese Control Conference*, 14-26.
    * MathWorks. (n.d.). [*Modeling Bang-Bang Controllers and State Machines using Stateflow*](https://www.mathworks.com/products/stateflow.html). MathWorks Documentation.
+
 2. **5G Millimeter-Wave & Phased Array Physics:**
-   * Balanis, C. A. (2015). *Antenna Theory: Analysis and Design* (4th ed.). John Wiley & Sons. 
-   * Rappaport, T. S., et al. (2013). "Millimeter Wave Mobile Communications for 5G Cellular: It Will Work!". *IEEE Access*, 1, 335-349. [DOI: 10.1109/ACCESS.2013.2260813](https://ieeexplore.ieee.org/document/6515173).
-   * Van Trees, H. L. (2002). *Optimum Array Processing: Part IV of Detection, Estimation, and Modulation Theory*. John Wiley & Sons.
+   * Balanis, C. A. (2015). [*Antenna Theory: Analysis and Design* (4th ed.)](https://www.wiley.com/en-us/Antenna+Theory:+Analysis+and+Design,+4th+Edition-p-9781118642061). John Wiley & Sons. 
+   * Rappaport, T. S., et al. (2013). ["Millimeter Wave Mobile Communications for 5G Cellular: It Will Work!"](https://ieeexplore.ieee.org/document/6515173). *IEEE Access*, 1, 335-349.
+   * Van Trees, H. L. (2002). [*Optimum Array Processing: Part IV of Detection, Estimation, and Modulation Theory*](https://www.wiley.com/en-us/Optimum+Array+Processing:+Part+IV+of+Detection,+Estimation,+and+Modulation+Theory-p-9780471093909). John Wiley & Sons.
+
 3. **Mathematics & Trajectory Generation:**
-   * Kreyszig, E. (2011). *Advanced Engineering Mathematics* (10th ed.). John Wiley & Sons.
+   * Kreyszig, E. (2011). [*Advanced Engineering Mathematics* (10th ed.)](https://www.wiley.com/en-us/Advanced+Engineering+Mathematics,+10th+Edition-p-9780470458365). John Wiley & Sons.
    * Weisstein, Eric W. ["Lissajous Curve."](https://mathworld.wolfram.com/LissajousCurve.html) *MathWorld—A Wolfram Web Resource*. 
+
 4. **Software Tools & Visualization Methods:**
-   * [MATLAB Phased Array System Toolbox Documentation](https://www.mathworks.com/products/phased-array.html)
+   * MathWorks. (n.d.). [*Phased Array System Toolbox Documentation*](https://www.mathworks.com/products/phased-array.html). MathWorks Documentation.
    * MathWorks. (n.d.). [*Using coder.extrinsic to Call MATLAB Functions in Simulink*](https://www.mathworks.com/help/simulink/ug/calling-matlab-functions-from-simulink-using-coder-extrinsic.html). MathWorks Documentation.
